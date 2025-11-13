@@ -615,3 +615,95 @@ body {
     margin: 0 auto; /* Centraliza o texto */
     opacity: 0.9;
 }
+
+/* =========================================
+   ANIMAÇÕES E EFEITOS VISUAIS (NOVO)
+   ========================================= */
+
+/* ---- 1. Animação de Entrada Suave (Fade In) ---- */
+/* Cria o efeito de deslizar para cima quando troca de aba */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px); /* Começa 10px abaixo */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Termina na posição original */
+    }
+}
+
+/* Aplica a animação no conteúdo das abas quando ficam ativas */
+.tab-content.active {
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* ---- 2. Efeito de "Clique" nos Botões (Press Effect) ---- */
+/* Faz o botão diminuir um pouquinho quando você clica e segura */
+.btn-primary:active, 
+.btn-secondary:active, 
+.tab-link:active,
+.sub-tab-link:active {
+    transform: scale(0.96) !important; /* Diminui para 96% do tamanho */
+    transition: transform 0.1s;
+}
+
+/* ---- 3. Botões mais Interativos (Hover) ---- */
+/* Reforça a sombra quando passa o mouse */
+.btn-primary:hover {
+    transform: translateY(-2px); /* Sobe levemente */
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4); /* Sombra verde brilhante */
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    background-color: var(--light-green);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ---- 4. Animação na Barra Lateral (Sidebar) ---- */
+/* Quando passa o mouse no link, o ícone dá uma "escorregada" para a direita */
+.sidebar-nav .nav-link:hover i {
+    transform: translateX(3px); /* Move 3px para a direita */
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav .nav-link i {
+    transition: transform 0.3s ease; /* Garante a volta suave */
+}
+
+/* ---- 5. Inputs e Campos de Busca ---- */
+/* Quando clica para digitar, o campo brilha e cresce levemente a borda */
+.search-bar input:focus,
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.15); /* Aura verde */
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+}
+
+/* ---- 6. Cards "Flutuantes" ---- */
+/* Refinando o efeito que já tínhamos colocado, para ser mais elástico */
+.card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px); /* Sobe mais */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ---- 7. Ícones de Status (Pulsar) ---- */
+/* Faz os ícones coloridos (vermelho/amarelo) pulsarem devagar para chamar atenção */
+@keyframes pulse-soft {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Aplica apenas nos ícones de alerta (vermelhos e amarelos) nos cards */
+.card-header .icon-red,
+.card-header .icon-yellow {
+    animation: pulse-soft 2s infinite ease-in-out;
+}
